@@ -11,7 +11,8 @@ module.exports = {
       NavigationBar: 'app/components/NavigationBar.js',
       Weather: 'app/components/Weather.js',
       About: 'app/components/About.js',
-      Examples: 'app/components/Examples.js'
+      Examples: 'app/components/Examples.js',
+      WeatherForm: 'app/components/WeatherForm.js'
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -20,7 +21,7 @@ module.exports = {
       {
         loader: 'babel-loader',
         query: {
-          presets: ['react', 'es2015']
+          presets: ['react', 'es2015', 'stage-1', 'stage-0']
         },
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/

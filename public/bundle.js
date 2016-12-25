@@ -57,8 +57,8 @@
 
 	var Main = __webpack_require__(233);
 	var Weather = __webpack_require__(235);
-	var About = __webpack_require__(236);
-	var Examples = __webpack_require__(237);
+	var About = __webpack_require__(237);
+	var Examples = __webpack_require__(238);
 
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -26425,36 +26425,39 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var _require = __webpack_require__(178),
-	    Link = _require.Link;
+	var _react2 = _interopRequireDefault(_react);
 
-	var NavigationBar = React.createClass({
+	var _reactRouter = __webpack_require__(178);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var NavigationBar = _react2.default.createClass({
 	  displayName: 'NavigationBar',
 
 	  render: function render() {
-	    return React.createElement(
+	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      React.createElement(
+	      _react2.default.createElement(
 	        'h2',
 	        null,
 	        'Navigation Component'
 	      ),
-	      React.createElement(
-	        Link,
-	        { to: '/' },
+	      _react2.default.createElement(
+	        _reactRouter.IndexLink,
+	        { to: '/', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 	        'Get Weather'
 	      ),
-	      React.createElement(
-	        Link,
-	        { to: '/about' },
+	      _react2.default.createElement(
+	        _reactRouter.IndexLink,
+	        { to: '/about', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 	        ' About '
 	      ),
-	      React.createElement(
-	        Link,
-	        { to: '/examples' },
+	      _react2.default.createElement(
+	        _reactRouter.IndexLink,
+	        { to: '/examples', activeClassName: 'active', activeStyle: { fontWeight: 'bold' } },
 	        ' Examples '
 	      )
 	    );
@@ -26469,17 +26472,30 @@
 
 	'use strict';
 
-	var React = __webpack_require__(1);
+	var _react = __webpack_require__(1);
 
-	var Weather = React.createClass({
+	var _react2 = _interopRequireDefault(_react);
+
+	var _WeatherForm = __webpack_require__(236);
+
+	var _WeatherForm2 = _interopRequireDefault(_WeatherForm);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Weather = _react2.default.createClass({
 	  displayName: 'Weather',
 
 
 	  render: function render() {
-	    return React.createElement(
-	      'h3',
+	    return _react2.default.createElement(
+	      'div',
 	      null,
-	      'Weather Component'
+	      _react2.default.createElement(
+	        'h3',
+	        null,
+	        'Weather Component'
+	      ),
+	      _react2.default.createElement(_WeatherForm2.default, null)
 	    );
 	  }
 	});
@@ -26488,6 +26504,64 @@
 
 /***/ },
 /* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var WeatherForm = function (_React$Component) {
+	  _inherits(WeatherForm, _React$Component);
+
+	  function WeatherForm() {
+	    _classCallCheck(this, WeatherForm);
+
+	    return _possibleConstructorReturn(this, (WeatherForm.__proto__ || Object.getPrototypeOf(WeatherForm)).apply(this, arguments));
+	  }
+
+	  _createClass(WeatherForm, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          "form",
+	          null,
+	          _react2.default.createElement("input", { type: "text", placeholder: "Type City" }),
+	          _react2.default.createElement(
+	            "button",
+	            null,
+	            "Get Weather"
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return WeatherForm;
+	}(_react2.default.Component);
+
+	exports.default = WeatherForm;
+
+/***/ },
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26510,7 +26584,7 @@
 	module.exports = About;
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
