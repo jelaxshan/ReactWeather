@@ -22,3 +22,4 @@ packaging/rpm/rpm-contents
 packaging/rpm/*.rpm
 src/server/assets/
 coverage
+.gitignore
