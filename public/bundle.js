@@ -57,8 +57,8 @@
 
 	var Main = __webpack_require__(233);
 	var Weather = __webpack_require__(235);
-	var About = __webpack_require__(237);
-	var Examples = __webpack_require__(238);
+	var About = __webpack_require__(238);
+	var Examples = __webpack_require__(239);
 
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -26480,13 +26480,34 @@
 
 	var _WeatherForm2 = _interopRequireDefault(_WeatherForm);
 
+	var _WeatherMessage = __webpack_require__(237);
+
+	var _WeatherMessage2 = _interopRequireDefault(_WeatherMessage);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Weather = _react2.default.createClass({
 	  displayName: 'Weather',
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      location: 'Miami',
+	      temp: 88
+	    };
+	  },
 
+	  handleSearch: function handleSearch(location) {
+	    this.setState({
+	      location: location,
+	      temp: 23
+	    });
+	  },
 	  render: function render() {
+	    var _state = this.state,
+	        temp = _state.temp,
+	        location = _state.location;
+
+
 	    return _react2.default.createElement(
 	      'div',
 	      null,
@@ -26495,7 +26516,8 @@
 	        null,
 	        'Weather Component'
 	      ),
-	      _react2.default.createElement(_WeatherForm2.default, null)
+	      _react2.default.createElement(_WeatherForm2.default, { onSearch: this.handleSearch }),
+	      _react2.default.createElement(_WeatherMessage2.default, { temp: temp, location: location })
 	    );
 	  }
 	});
@@ -26506,7 +26528,83 @@
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var WeatherForm = function (_React$Component) {
+	  _inherits(WeatherForm, _React$Component);
+
+	  function WeatherForm() {
+	    var _ref;
+
+	    var _temp, _this, _ret;
+
+	    _classCallCheck(this, WeatherForm);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = WeatherForm.__proto__ || Object.getPrototypeOf(WeatherForm)).call.apply(_ref, [this].concat(args))), _this), _this.onFormSubmit = function (e) {
+
+	      e.preventDefault();
+
+	      var location = _this.refs.location.value;
+
+	      if (location.length > 0) {
+	        _this.refs.location.value = '';
+	        _this.props.onSearch(location);
+	      }
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+
+	  _createClass(WeatherForm, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: this.onFormSubmit },
+	          _react2.default.createElement('input', { type: 'text', placeholder: 'Type City', ref: 'location' }),
+	          _react2.default.createElement(
+	            'button',
+	            null,
+	            'Get Weather'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return WeatherForm;
+	}(_react2.default.Component);
+
+	exports.default = WeatherForm;
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -26536,21 +26634,19 @@
 	  }
 
 	  _createClass(WeatherForm, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
+	      var _props = this.props,
+	          temp = _props.temp,
+	          location = _props.location;
+
 	      return _react2.default.createElement(
-	        "div",
+	        'h3',
 	        null,
-	        _react2.default.createElement(
-	          "form",
-	          null,
-	          _react2.default.createElement("input", { type: "text", placeholder: "Type City" }),
-	          _react2.default.createElement(
-	            "button",
-	            null,
-	            "Get Weather"
-	          )
-	        )
+	        'It is ',
+	        temp,
+	        ' degrees in ',
+	        location
 	      );
 	    }
 	  }]);
@@ -26561,7 +26657,7 @@
 	exports.default = WeatherForm;
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -26584,7 +26680,7 @@
 	module.exports = About;
 
 /***/ },
-/* 238 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
