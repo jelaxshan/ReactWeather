@@ -1,0 +1,24 @@
+### Science Direct Technology ###
+
+## Node Files ##
+node_modules
+npm-debug.log
+
+## Intellij Files ##
+sdtech-search-page.iml
+.idea
+
+## OS Files ##
+.DS_Store
+.DS_Store?
+thumbs.db
+
+## Logs ##
+*.log
+
+## Build files ##
+build
+packaging/rpm/rpm-contents
+packaging/rpm/*.rpm
+src/server/assets/
+coverage
