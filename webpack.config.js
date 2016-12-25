@@ -13,7 +13,8 @@ module.exports = {
       About: 'app/components/About.js',
       Examples: 'app/components/Examples.js',
       WeatherForm: 'app/components/WeatherForm.js',
-      WeatherMessage: 'app/components/WeatherMessage'
+      WeatherMessage: 'app/components/WeatherMessage.js',
+      openWeatherMap: 'app/api/openWeatherMap.js'
     },
     extensions: ['', '.js', '.jsx']
   },
