@@ -33,25 +33,25 @@ class Weather extends React.Component{
   }
 
   handleSearch = location => {
-    this.setState({
-      isLoading: true,
-      errorstate: undefined,
-      location: undefined,
-      temp: undefined
-    });
+        this.setState({
+          isLoading: true,
+          errorstate: undefined,
+          location: undefined,
+          temp: undefined
+        });
 
-    getTemp(location).then(resultsObj => {
-      this.setState({
-        weatherText : resultsObj.weathercondition,
-        weatherIcon: resultsObj.weathericon,
-        location: location,
-        temp: Math.floor(resultsObj.temp),
-        isLoading: false
-      });
-    },errorMessage => {
-      console.log(errorMessage.message);
-      this.setState({isLoading: false, errorstate: errorMessage.message});
-    });
+        getTemp(location).then(resultsObj => {
+          this.setState({
+            weatherText : resultsObj.weathercondition,
+            weatherIcon: resultsObj.weathericon,
+            location: location,
+            temp: Math.floor(resultsObj.temp),
+            isLoading: false
+          });
+        },errorMessage => {
+          console.log(errorMessage.message);
+          this.setState({isLoading: false, errorstate: errorMessage.message});
+        });
   }
 
   render() {
