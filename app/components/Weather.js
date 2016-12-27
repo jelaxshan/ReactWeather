@@ -2,6 +2,7 @@ import React from 'react';
 import WeatherForm from 'WeatherForm';
 import WeatherMessage from 'WeatherMessage';
 import { getTemp } from 'Apixu';
+import ErrorMessage from 'ErrorMessage';
 
 
 class Weather extends React.Component{
@@ -14,19 +15,22 @@ class Weather extends React.Component{
   }
 
   handleSearch = location => {
-    this.setState({isLoading: true});
+    this.setState({
+      isLoading: true,
+      errorstate: undefined
+    });
 
     getTemp(location).then(resultsObj => {
       this.setState({
         weatherText : resultsObj.weathercondition,
         weatherIcon: resultsObj.weathericon,
-        errorstate: false,
         location: location,
         temp: Math.floor(resultsObj.temp),
         isLoading: false
       });
     },errorMessage => {
-      this.setState({isLoading: false, errorstate: true});
+      console.log(errorMessage.message);
+      this.setState({isLoading: false, errorstate: errorMessage.message});
     });
   }
 
@@ -37,11 +41,16 @@ class Weather extends React.Component{
       if (isLoading) {
         return <h3 className="text-center">Fetching weather...</h3>;
       }
-      else if (errorstate){
-        return <h3>Could not find your location</h3>
-      }
        else if (temp && location) {
         return <WeatherMessage temp={temp} weatherText={weatherText} weatherIcon={weatherIcon} location={location} />;
+      }
+    }
+
+    function renderError () {
+      if (typeof errorstate === 'string') {
+        return (
+          <ErrorMessage message={errorstate}/>
+        )
       }
     }
 
@@ -50,9 +59,10 @@ class Weather extends React.Component{
         <h1 className="text-center">Get weather</h1>
       <WeatherForm onSearch={this.handleSearch}/>
       {renderMessage()}
-</div>
-)
-}
-}
+      {renderError()}
+    </div>
+      )
+    }
+  }
 
 export default Weather ;

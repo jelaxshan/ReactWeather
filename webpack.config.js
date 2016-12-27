@@ -3,8 +3,14 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry:{
-    'client.js': './app/app.jsx',
+  entry:[
+    'script!jquery/dist/jquery.min.js',
+    'script!foundation-sites/dist/foundation.min.js',
+    './app/app.jsx'
+],
+externals: {
+  jquery: 'jQuery',
+  foundation: 'Foundation'
 },
   output: {
     path: __dirname,
@@ -21,10 +27,17 @@ module.exports = {
       WeatherForm: 'app/components/WeatherForm.js',
       WeatherMessage: 'app/components/WeatherMessage.js',
       Apixu: 'app/api/Apixu.js',
-      style: 'app/styles.scss'
+      style: 'app/styles.scss',
+      ErrorMessage: 'app/components/ErrorMessage.js',
     },
     extensions: ['', '.js', '.jsx']
   },
+  plugins: [
+       new webpack.ProvidePlugin({
+          $: "jquery",
+          jQuery: "jquery"
+      })
+   ],
   module: {
     loaders: [
       {
@@ -39,10 +52,6 @@ module.exports = {
        test: /\.scss$/,
        loaders: ['style', 'css', 'sass']
      },
-     {
-       test: /\.css$/,
-       loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-     }
     ]
   }
 };
