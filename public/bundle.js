@@ -26571,7 +26571,13 @@
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = NavigationBar.__proto__ || Object.getPrototypeOf(NavigationBar)).call.apply(_ref, [this].concat(args))), _this), _this.onSearch = function (e) {
 	      e.preventDefault();
-	      alert('not yet wired up');
+	      var location = _this.refs.search.value;
+	      var encodedLocation = encodeURIComponent(location);
+
+	      if (location.length > 0) {
+	        _this.refs.search.value = '';
+	        window.location.hash = '#/?location=' + encodedLocation;
+	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
@@ -26634,7 +26640,7 @@
 	              _react2.default.createElement(
 	                'li',
 	                null,
-	                _react2.default.createElement('input', { type: 'search', placeholder: 'Search weather' })
+	                _react2.default.createElement('input', { type: 'search', placeholder: 'Search weather', ref: 'search' })
 	              ),
 	              _react2.default.createElement(
 	                'li',
@@ -27050,7 +27056,9 @@
 	    _this.handleSearch = function (location) {
 	      _this.setState({
 	        isLoading: true,
-	        errorstate: undefined
+	        errorstate: undefined,
+	        location: undefined,
+	        temp: undefined
 	      });
 
 	      (0, _Apixu.getTemp)(location).then(function (resultsObj) {
@@ -27074,6 +27082,26 @@
 	  }
 
 	  _createClass(Weather, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var location = this.props.location.query.location;
+
+	      if (location && location.length > 0) {
+	        this.handleSearch(location);
+	        window.location.hash = '#/';
+	      }
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(newProps) {
+	      var location = newProps.location.query.location;
+
+	      if (location && location.length > 0) {
+	        this.handleSearch(location);
+	        window.location.hash = '#/';
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var _state = this.state,

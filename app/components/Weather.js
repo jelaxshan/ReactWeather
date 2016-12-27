@@ -14,10 +14,30 @@ class Weather extends React.Component{
     }
   }
 
+  componentDidMount() {
+    var location = this.props.location.query.location;
+
+    if (location && location.length > 0) {
+      this.handleSearch(location);
+      window.location.hash= '#/';
+    }
+  }
+
+  componentWillReceiveProps (newProps) {
+    var location = newProps.location.query.location;
+
+    if (location && location.length > 0) {
+      this.handleSearch(location);
+      window.location.hash= '#/';
+    }
+  }
+
   handleSearch = location => {
     this.setState({
       isLoading: true,
-      errorstate: undefined
+      errorstate: undefined,
+      location: undefined,
+      temp: undefined
     });
 
     getTemp(location).then(resultsObj => {
