@@ -26451,11 +26451,14 @@
 	        null,
 	        _react2.default.createElement(_NavigationBar2.default, null),
 	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          'Main Component'
-	        ),
-	        this.props.children
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'columns medium-6 large-4 small-centered' },
+	            this.props.children
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -27020,7 +27023,7 @@
 	        if (isLoading) {
 	          return _react2.default.createElement(
 	            'h3',
-	            null,
+	            { className: 'text-center' },
 	            'Fetching weather...'
 	          );
 	        } else if (errorstate) {
@@ -27038,9 +27041,9 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Weather Component'
+	          'h1',
+	          { className: 'text-center' },
+	          'Get weather'
 	        ),
 	        _react2.default.createElement(_WeatherForm2.default, { onSearch: this.handleSearch }),
 	        renderMessage()
@@ -27116,7 +27119,7 @@
 	          _react2.default.createElement('input', { type: 'text', placeholder: 'Type City', ref: 'location' }),
 	          _react2.default.createElement(
 	            'button',
-	            null,
+	            { className: 'button expanded hollow' },
 	            'Get Weather'
 	          )
 	        )
@@ -27133,7 +27136,7 @@
 /* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -27163,7 +27166,7 @@
 	  }
 
 	  _createClass(WeatherMessage, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      var _props = this.props,
 	          temp = _props.temp,
@@ -27172,15 +27175,15 @@
 	          weatherIcon = _props.weatherIcon;
 
 	      return _react2.default.createElement(
-	        'h3',
-	        null,
-	        'It is ',
+	        "h3",
+	        { className: "text-center" },
+	        "It is ",
 	        temp,
-	        ' degrees and ',
+	        "  \xB0C and ",
 	        weatherText,
-	        ' ',
-	        _react2.default.createElement('img', { src: 'http:' + weatherIcon }),
-	        ' in ',
+	        " ",
+	        _react2.default.createElement("img", { src: "http:" + weatherIcon }),
+	        " in ",
 	        location
 	      );
 	    }
@@ -28722,7 +28725,7 @@
 /* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -28752,12 +28755,48 @@
 	  }
 
 	  _createClass(About, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h3',
+	        "div",
 	        null,
-	        'About Component'
+	        _react2.default.createElement(
+	          "h1",
+	          { className: "text-center" },
+	          "About"
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "Building Weather App using React"
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "The tools are used to make this app:"
+	        ),
+	        _react2.default.createElement(
+	          "ul",
+	          null,
+	          _react2.default.createElement(
+	            "li",
+	            null,
+	            _react2.default.createElement(
+	              "a",
+	              { href: "https://facebook.github.io/react" },
+	              "React"
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "li",
+	            null,
+	            _react2.default.createElement(
+	              "a",
+	              { href: "https://www.apixu.com/api.aspx" },
+	              "Apixu Weather API"
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -28785,6 +28824,8 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(178);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28806,9 +28847,40 @@
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h3',
+	        'div',
 	        null,
-	        'Examples Component'
+	        _react2.default.createElement(
+	          'h1',
+	          { className: 'text-center' },
+	          'Examples'
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Here are a few example location to try out'
+	        ),
+	        _react2.default.createElement(
+	          'ol',
+	          null,
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/?location=London' },
+	              'London'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/?location=Munich' },
+	              'Munich'
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);
