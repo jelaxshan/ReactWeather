@@ -1,6 +1,6 @@
 import React from 'react';
 import NavigationBar from 'NavigationBar';
-
+import 'app/style.scss';
 class Main extends React.Component{
   render() {
     return (

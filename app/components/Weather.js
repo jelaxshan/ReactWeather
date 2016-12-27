@@ -1,7 +1,7 @@
 import React from 'react';
 import WeatherForm from 'WeatherForm';
 import WeatherMessage from 'WeatherMessage';
-import { getTemp } from 'openWeatherMap';
+import { getTemp } from 'Apixu';
 
 
 class Weather extends React.Component{
@@ -14,33 +14,34 @@ class Weather extends React.Component{
   }
 
   handleSearch = location => {
-    var that = this;
     this.setState({isLoading: true});
 
-    getTemp(location).then(temp => {
+    getTemp(location).then(resultsObj => {
       this.setState({
+        weatherText : resultsObj.weathercondition,
+        weatherIcon: resultsObj.weathericon,
         errorstate: false,
         location: location,
-        temp: Math.floor(temp),
+        temp: Math.floor(resultsObj.temp),
         isLoading: false
       });
     },errorMessage => {
       this.setState({isLoading: false, errorstate: true});
-      console.log(errorMessage);
     });
   }
 
   render() {
-    var {isLoading, temp, location, errorstate} = this.state;
+    var {isLoading, temp, location, weatherText, weatherIcon, errorstate} = this.state;
 
     function renderMessage() {
       if (isLoading) {
         return <h3>Fetching weather...</h3>;
-      } else if (temp && location) {
-        return <WeatherMessage temp={temp} location={location}/>;
       }
       else if (errorstate){
         return <h3>Could not find your location</h3>
+      }
+       else if (temp && location) {
+        return <WeatherMessage temp={temp} weatherText={weatherText} weatherIcon={weatherIcon} location={location} />;
       }
     }
 
